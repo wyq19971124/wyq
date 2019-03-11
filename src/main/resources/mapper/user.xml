@@ -5,6 +5,6 @@
 
 <mapper namespace="com.njxzc.dao.UserMapper">
     <select id="checkUser" resultType="User">
-        select * from users WHERE name = #{user.name} AND password = #{user.password}
+        select * from users WHERE username = #{user.name} AND password = #{user.password}
     </select>
 </mapper>

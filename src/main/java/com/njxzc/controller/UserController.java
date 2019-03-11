@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,20 +31,22 @@ public class UserController {
         String userName = request.getParameter("username");
         String password = request.getParameter("password");
         User user;
-        if (userName == null) {
-            return "login";
-        }
-        if (userName.contains("admin_")) {
+        if (userName == null) return "login";
+        if (userName.equals("admin")) {
             user = new User(userName, password);
             User u = userService.checkUser(user);
-            if (u == null) {
-                return "login";
-            }
+            if (u == null) return "login";
             model.addAttribute("user", u);
             request.getSession().setAttribute("user", u);
-            return "";
+            return "admin/admin";
+        } else {
+            user = new User(userName, password);
+            User u = userService.checkUser(user);
+            if (u == null) return "login";
+            model.addAttribute("user", u);
+            request.getSession().setAttribute("user", u);
+            return "login";
         }
-        return "";
     }
 
 }
