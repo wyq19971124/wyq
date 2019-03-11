@@ -6,7 +6,7 @@ package com.njxzc.entity;
 public class User {
 
     private String name;
-    private int password;
+    private String password;
     private int age;
     private int pnum;
     private String sex;
@@ -35,11 +35,11 @@ public class User {
         this.name = name;
     }
 
-    public int getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(int password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -105,5 +105,10 @@ public class User {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
     }
 }
