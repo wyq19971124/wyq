@@ -45,7 +45,7 @@ public class UserController {
             if (u == null) return "login";
             model.addAttribute("user", u);
             request.getSession().setAttribute("user", u);
-            return "login";
+            return "mobile";
         }
     }
 
