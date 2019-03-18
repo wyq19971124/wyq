@@ -31,22 +31,31 @@ public class UserController {
         String userName = request.getParameter("username");
         String password = request.getParameter("password");
         User user;
-        if (userName == null) return "login";
+        if (userName == null) {return "login";}
         if (userName.equals("admin")) {
             user = new User(userName, password);
             User u = userService.checkUser(user);
-            if (u == null) return "login";
+            if (u == null) {return "login";}
             model.addAttribute("user", u);
             request.getSession().setAttribute("user", u);
             return "admin/admin";
         } else {
             user = new User(userName, password);
             User u = userService.checkUser(user);
-            if (u == null) return "login";
+            if (u == null) {return "login";}
             model.addAttribute("user", u);
             request.getSession().setAttribute("user", u);
-            return "mobile";
+            return "content";
         }
+
+    }
+    @GetMapping(value = "/register")
+    public String reg(Model model,
+                         HttpServletRequest request) {
+        String userName = request.getParameter("username");
+        String password = request.getParameter("password");
+        User user;
+        return "register";
     }
 
 }
